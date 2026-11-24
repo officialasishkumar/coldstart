@@ -53,6 +53,22 @@ A small model on a fast link already spends 97% of its startup fetching
 bytes. With a 7B or 70B model the download dominates far more, which is why
 in-cluster mirrors, image streaming and pre-staged weights matter.
 
+## Together with buildtrace: how long, and from whom
+
+coldstart says *how long* each phase took; [buildtrace](https://github.com/officialasishkumar/buildtrace),
+run as a sidecar in the same pod, says *where those bytes came from*. One
+pod, both views (kind, 24 Nov 2026, [manifest](https://github.com/officialasishkumar/buildtrace/blob/main/deploy/llm-pod-with-buildtrace.yaml)):
+
+```
+coldstart:   created → first response 51.8s; init fetch-weights 41.0s (79%)
+buildtrace:  us.aws.cdn.hf.co  443/tcp  446.4 MB down  Amazon.com (AS16509)  US
+             huggingface.co    443/tcp      8 KB down  Amazon.com (AS16509)  US
+```
+
+Four fifths of that cold start was one download from one US-registered
+network, repeated on every restart. That is the number to bring to a
+discussion about node-local caches, in-cluster mirrors or data sovereignty.
+
 ## Install
 
 ```
