@@ -1,0 +1,300 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "creationTimestamp": "2026-11-24T10:54:12Z",
+        "generateName": "llm-coldstart-",
+        "generation": 1,
+        "labels": {
+            "app": "llm-coldstart"
+        },
+        "name": "llm-coldstart-j44tp",
+        "namespace": "default",
+        "resourceVersion": "727",
+        "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+    },
+    "spec": {
+        "containers": [
+            {
+                "args": [
+                    "-m",
+                    "/models/model.gguf",
+                    "--host",
+                    "0.0.0.0",
+                    "--port",
+                    "8080",
+                    "-c",
+                    "2048"
+                ],
+                "image": "ghcr.io/ggml-org/llama.cpp:server",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "server",
+                "ports": [
+                    {
+                        "containerPort": 8080,
+                        "protocol": "TCP"
+                    }
+                ],
+                "readinessProbe": {
+                    "failureThreshold": 3,
+                    "httpGet": {
+                        "path": "/health",
+                        "port": 8080,
+                        "scheme": "HTTP"
+                    },
+                    "periodSeconds": 2,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1
+                },
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/models",
+                        "name": "models"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-5csg9",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "initContainers": [
+            {
+                "command": [
+                    "curl",
+                    "-fsSL",
+                    "-o",
+                    "/models/model.gguf",
+                    "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf"
+                ],
+                "image": "curlimages/curl:8.11.1",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "fetch-weights",
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/models",
+                        "name": "models"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-5csg9",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "nodeName": "coldstart-control-plane",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Never",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "emptyDir": {},
+                "name": "models"
+            },
+            {
+                "name": "kube-api-access-5csg9",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-11-24T10:54:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-11-24T10:55:12Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-11-24T10:56:03Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-11-24T10:56:03Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-11-24T10:54:12Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://eaf0d57b51f6c66de3c03829b049b3ec803714b0e3a09ecfd698fc6c61fe1d78",
+                "image": "ghcr.io/ggml-org/llama.cpp:server",
+                "imageID": "ghcr.io/ggml-org/llama.cpp@sha256:6fab63852916c294cc8a2f1515079c4ca40248193eea8868ae742134335b989b",
+                "lastState": {},
+                "name": "server",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2026-11-24T10:56:02Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/models",
+                        "name": "models"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-5csg9",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "hostIP": "172.18.0.2",
+        "hostIPs": [
+            {
+                "ip": "172.18.0.2"
+            }
+        ],
+        "initContainerStatuses": [
+            {
+                "containerID": "containerd://5d1c1f72ba2f718fe4a1b31cc5d8e1ba061f6770e593a6fb736e4aa03884ec9d",
+                "image": "docker.io/curlimages/curl:8.11.1",
+                "imageID": "docker.io/curlimages/curl@sha256:c1fe1679c34d9784c1b0d1e5f62ac0a79fca01fb6377cdd33e90473c6f9f9a69",
+                "lastState": {},
+                "name": "fetch-weights",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": false,
+                "state": {
+                    "terminated": {
+                        "containerID": "containerd://5d1c1f72ba2f718fe4a1b31cc5d8e1ba061f6770e593a6fb736e4aa03884ec9d",
+                        "exitCode": 0,
+                        "finishedAt": "2026-11-24T10:55:12Z",
+                        "reason": "Completed",
+                        "startedAt": "2026-11-24T10:54:20Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 101,
+                        "supplementalGroups": [
+                            101
+                        ],
+                        "uid": 100
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/models",
+                        "name": "models"
+                    },
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-5csg9",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.244.0.5",
+        "podIPs": [
+            {
+                "ip": "10.244.0.5"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "startTime": "2026-11-24T10:54:12Z"
+    }
+}

@@ -1,0 +1,32 @@
+# Same server, but the weights live in a node-local cache (hostPath), so only
+# the first pod on a node downloads them.
+apiVersion: v1
+kind: Pod
+metadata:
+  generateName: llm-cached-
+  labels:
+    app: llm-cached
+spec:
+  restartPolicy: Never
+  volumes:
+    - name: models
+      hostPath: { path: /var/cache/coldstart-models, type: DirectoryOrCreate }
+  initContainers:
+    - name: fetch-weights
+      image: curlimages/curl:8.11.1
+      securityContext: { runAsUser: 0 }   # the hostPath directory is root-owned
+      command: ["sh", "-c", "test -s /models/model.gguf || { curl -fsSL -o /models/model.part \"$0\" && mv /models/model.part /models/model.gguf; }",
+                "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf"]
+      volumeMounts:
+        - { name: models, mountPath: /models }
+  containers:
+    - name: server
+      image: ghcr.io/ggml-org/llama.cpp:server
+      args: ["-m", "/models/model.gguf", "--host", "0.0.0.0", "--port", "8080", "-c", "2048"]
+      ports:
+        - containerPort: 8080
+      readinessProbe:
+        httpGet: { path: /health, port: 8080 }
+        periodSeconds: 2
+      volumeMounts:
+        - { name: models, mountPath: /models }

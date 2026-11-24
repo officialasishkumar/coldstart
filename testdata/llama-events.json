@@ -1,0 +1,337 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:54:12Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "564",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:54:12Z",
+            "message": "Successfully assigned default/llm-coldstart-j44tp to coldstart-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:54:12Z",
+                "name": "llm-coldstart-j44tp.18eaf5caa46eb47f",
+                "namespace": "default",
+                "resourceVersion": "566",
+                "uid": "b244bb78-a1f5-476b-b790-e6a4a85f1043"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:54:12Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{fetch-weights}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:54:12Z",
+            "message": "Pulling image \"curlimages/curl:8.11.1\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:54:12Z",
+                "name": "llm-coldstart-j44tp.18eaf5cac4b18991",
+                "namespace": "default",
+                "resourceVersion": "570",
+                "uid": "c61b72de-766d-4184-a4fb-89d0fff89e26"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:54:20Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{fetch-weights}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:54:20Z",
+            "message": "Successfully pulled image \"curlimages/curl:8.11.1\" in 7.325s (7.325s including waiting). Image size: 9850389 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:54:20Z",
+                "name": "llm-coldstart-j44tp.18eaf5cc79457ec4",
+                "namespace": "default",
+                "resourceVersion": "580",
+                "uid": "8991fa3f-0548-4ec6-bbfc-0834b492c7a9"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:54:20Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{fetch-weights}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:54:20Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:54:20Z",
+                "name": "llm-coldstart-j44tp.18eaf5cc79da7be1",
+                "namespace": "default",
+                "resourceVersion": "581",
+                "uid": "64c25d48-568f-47c0-930c-c25f01ed4499"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:54:20Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.initContainers{fetch-weights}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:54:20Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:54:20Z",
+                "name": "llm-coldstart-j44tp.18eaf5cc7e0e9f94",
+                "namespace": "default",
+                "resourceVersion": "582",
+                "uid": "4a67508e-1363-4050-849e-cd36da16149b"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:55:12Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{server}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:55:12Z",
+            "message": "Pulling image \"ghcr.io/ggml-org/llama.cpp:server\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:55:12Z",
+                "name": "llm-coldstart-j44tp.18eaf5d8bfed32ea",
+                "namespace": "default",
+                "resourceVersion": "652",
+                "uid": "feb6c211-4f7f-4f13-9a28-b4f422311d2f"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:56:02Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{server}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:56:02Z",
+            "message": "Successfully pulled image \"ghcr.io/ggml-org/llama.cpp:server\" in 49.427s (49.427s including waiting). Image size: 291965819 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:56:02Z",
+                "name": "llm-coldstart-j44tp.18eaf5e4421ee65b",
+                "namespace": "default",
+                "resourceVersion": "719",
+                "uid": "db2eb4b7-d539-48b2-8c5f-b0f567e76cc5"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:56:02Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{server}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:56:02Z",
+            "message": "Container created",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:56:02Z",
+                "name": "llm-coldstart-j44tp.18eaf5e4434c1491",
+                "namespace": "default",
+                "resourceVersion": "720",
+                "uid": "c201a874-1a76-4084-adcd-e42be4e9ac29"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:56:02Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{server}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:56:02Z",
+            "message": "Container started",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:56:02Z",
+                "name": "llm-coldstart-j44tp.18eaf5e44842ad31",
+                "namespace": "default",
+                "resourceVersion": "721",
+                "uid": "1717a5b0-810d-413a-9ed1-a6279ef2b684"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-24T10:56:02Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{server}",
+                "kind": "Pod",
+                "name": "llm-coldstart-j44tp",
+                "namespace": "default",
+                "resourceVersion": "565",
+                "uid": "8194d2f5-3fdc-4aec-878a-566ea9bdc9cf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-24T10:56:02Z",
+            "message": "Readiness probe failed: HTTP probe failed with statuscode: 503",
+            "metadata": {
+                "creationTimestamp": "2026-11-24T10:56:02Z",
+                "name": "llm-coldstart-j44tp.18eaf5e47205218b",
+                "namespace": "default",
+                "resourceVersion": "722",
+                "uid": "39ce00d6-9f2d-4ee9-936c-bf34a4b19bf1"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "coldstart-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "coldstart-control-plane"
+            },
+            "type": "Warning"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
